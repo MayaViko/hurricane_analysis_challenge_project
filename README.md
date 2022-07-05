@@ -1,4 +1,4 @@
-Hurricane Analysis
+# Hurricane Analysis
 
 This Codecademy project that included creation of functions that should organise and manipulate data about Category 5 Hurricanes in accordance with the assigned tasks.
 
