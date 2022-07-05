@@ -23,12 +23,9 @@ deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,3
 
 conversion = {"M": 1000000,
               "B": 1000000000}
-def update_damages (damages):
-    
-    updated_damage_list = []
-    
-    for item in damages:
-        
+def update_damages (damages):    
+    updated_damage_list = []    
+    for item in damages:        
         if "B" in item:
           item = item.strip("B")
           item = float(item)
@@ -40,8 +37,7 @@ def update_damages (damages):
           item = item * conversion["M"]
           updated_damage_list.append(item)
         else:
-          updated_damage_list.append(item)  
-        
+          updated_damage_list.append(item)         
     return updated_damage_list
 
 damages_2 = update_damages(damages)
@@ -49,12 +45,9 @@ print(damages_2)
 
 # write your construct hurricane dictionary function here:
 
-def new_hurricane_list(name, month, year,max_sustained_winds, area_affected, damage, death):
-    
+def new_hurricane_list(name, month, year,max_sustained_winds, area_affected, damage, death):    
   hurricane_dictionary = {}
-
-  for i in range(0,len(name)):
-        
+  for i in range(0,len(name)):        
     hurricane_dictionary[i] = {
       "Name": name[i],
       "Months": month[i],
@@ -63,8 +56,7 @@ def new_hurricane_list(name, month, year,max_sustained_winds, area_affected, dam
       "Areas affected": area_affected[i],
       "Damage": damage [i],
       "Death": death[i]
-      }
-    
+      }    
   return hurricane_dictionary
 
 new_hurricane = new_hurricane_list(names,months, years, max_sustained_winds, areas_affected, damages_2, deaths)
@@ -73,12 +65,9 @@ print (new_hurricane)
 
 # write your construct hurricane by year dictionary function here:
 
-def new_hurricane_list_by_year(name, month,year,max_sustained_winds, area_affected, damage, death):
-    
+def new_hurricane_list_by_year(name, month,year,max_sustained_winds, area_affected, damage, death):    
   hurricane_dictionary = {}
-
-  for i in range(0,len(year)):
-        
+  for i in range(0,len(year)):        
     hurricane_dictionary[i] = {
       "Name": name[i],
       "Months": month[i],
@@ -87,8 +76,7 @@ def new_hurricane_list_by_year(name, month,year,max_sustained_winds, area_affect
       "Areas affected": area_affected[i],
       "Damage": damage [i],
       "Death": death[i]
-      }
-    
+      }    
   return hurricane_dictionary
 
 new_hurricane_by_year = new_hurricane_list_by_year(names,months, years, max_sustained_winds, areas_affected, damages_2, deaths)
@@ -96,17 +84,14 @@ print (new_hurricane_by_year)
 
 # write your count affected areas function here:
 
-def count_of_damaged_areas (area_affected):
-    
+def count_of_damaged_areas (area_affected):    
   damaged_areas = {}
-
   for area in areas_affected:
     for i in area:
       if i in damaged_areas:
         damaged_areas[i] += 1
       else:
-        damaged_areas[i] = 0
-        
+        damaged_areas[i] = 0        
   return damaged_areas
 
 damaged_area_count = count_of_damaged_areas(areas_affected)
@@ -114,11 +99,9 @@ print(damaged_area_count)
 
 # write your find most affected area function here:
 
-def area_affected_most (damaged_area_count):
-    
+def area_affected_most (damaged_area_count):    
   max_area_count = 0
-  max_area_name = ''
-    
+  max_area_name = ''    
   for area in damaged_area_count:
     if damaged_area_count[area] > max_area_count:
       max_area_count = damaged_area_count[area]
@@ -130,11 +113,9 @@ print(most_frequently_affected_area)
 
 # write your greatest number of deaths function here:
 
-def deadliest_hurricane (new_hurricane):
-    
+def deadliest_hurricane (new_hurricane):    
   number_of_deathes = 0
-  hurricane_name = ''
-    
+  hurricane_name = ''    
   for hurricane in new_hurricane:
     if new_hurricane [hurricane]["Death"] > number_of_deathes:
       number_of_deathes = new_hurricane[hurricane]["Death"]
@@ -149,13 +130,10 @@ print(deadly_hurricane)
 # write your catgeorize by mortality function here:
 
 def mortality_rating (new_hurricane):
-  mortality_rating_list = {0:[], 1: [], 2: [], 3: [], 4:[]}
-    
-  for hurricane in new_hurricane:
-    
+  mortality_rating_list = {0:[], 1: [], 2: [], 3: [], 4:[]}    
+  for hurricane in new_hurricane:    
     death_rate = 0
     death = new_hurricane[hurricane]["Death"]
-
     if death == 0:
       death_rate = 0
     elif death <= 100:
@@ -165,13 +143,11 @@ def mortality_rating (new_hurricane):
     elif death <= 1000:
       death_rate = 3
     else:
-      death_rate = 4
-  
+      death_rate = 4  
     if death_rate not in mortality_rating_list:
       mortality_rating_list[death_rate] = new_hurricane[hurricane]
     else:
-      mortality_rating_list[death_rate].append(new_hurricane[hurricane])
-  
+      mortality_rating_list[death_rate].append(new_hurricane[hurricane])  
   return mortality_rating_list
 
 mortality_rate = mortality_rating (new_hurricane)
@@ -179,11 +155,9 @@ print(mortality_rate)
 
 # write your greatest damage function here:
 
-def most_damage_hurricane (new_hurricane):
-    
+def most_damage_hurricane (new_hurricane):    
   most_damage = 0
-  hurricane_name = ''
-    
+  hurricane_name = ''    
   for hurricane in new_hurricane:
     if new_hurricane [hurricane]["Damage"] == "Damages not recorded":
       continue 
@@ -210,13 +184,10 @@ damage_scale = {0: 0,
 # categorize hurricanes in new dictionary with damage severity as key
 
 def damages_rating (new_hurricane):
-  damages_rating_list = {0:[], 1: [], 2: [], 3: [], 4:[]}
-    
-  for hurricane in new_hurricane:
-    
+  damages_rating_list = {0:[], 1: [], 2: [], 3: [], 4:[]}    
+  for hurricane in new_hurricane:    
     damage_rate = 0
-    damage = new_hurricane[hurricane]["Damage"]
-   
+    damage = new_hurricane[hurricane]["Damage"]   
     if damage == 'Damages not recorded':
       continue
     elif damage == damage_scale[0]:
@@ -228,13 +199,11 @@ def damages_rating (new_hurricane):
     elif damage <= damage_scale[3]:
       damage_rate = 3
     else:
-      damage_rate = 4
-  
+      damage_rate = 4  
     if damage_rate not in damages_rating_list:
       damages_rating_list[damage_rate] = new_hurricane[hurricane]
     else:
-      damages_rating_list[damage_rate].append(new_hurricane[hurricane])
-  
+      damages_rating_list[damage_rate].append(new_hurricane[hurricane])  
   return damages_rating_list
 
 damage_rate = damages_rating (new_hurricane)
